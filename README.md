@@ -5,3 +5,9 @@
 ## Prerequisites
 * [JDK 11](https://adoptopenjdk.net/)
 * Gradle
+
+## Run
+```
+$ docker-compose up -d
+$ ./gradlew bootRun
+```
