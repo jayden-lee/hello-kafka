@@ -21,6 +21,7 @@ public class KafkaProducerConfig {
     private static final String GZIP = "gzip";
     private static final int BATCH_SIZE = 16_384 * 4; // 64K
     private static final int LINGER_MS = 100; // 100ms
+    private static final String ACKS_LEADER = "1"; // 0, 1, all
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
@@ -31,6 +32,7 @@ public class KafkaProducerConfig {
         configProps.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, GZIP);
         configProps.put(ProducerConfig.BATCH_SIZE_CONFIG, BATCH_SIZE);
         configProps.put(ProducerConfig.LINGER_MS_CONFIG, LINGER_MS);
+        configProps.put(ProducerConfig.ACKS_CONFIG, ACKS_LEADER);
 
         return new DefaultKafkaProducerFactory<>(configProps);
     }
