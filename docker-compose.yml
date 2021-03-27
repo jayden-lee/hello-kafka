@@ -21,3 +21,17 @@ services:
       KAFKA_DELETE_TOPIC_ENABLE: "true"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  kafka_manager:
+    container_name: kafka_manager
+    image: hlebalbau/kafka-manager:stable
+    depends_on:
+      - zookeeper
+      - kafka
+    command:
+      - "-Dhttp.port=8000"
+    ports:
+      - "8000:8000"
+    environment:
+      ZK_HOSTS: "zookeeper:2181"
+      APPLICATION_SECRET: "random-secret"
